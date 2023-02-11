@@ -1,0 +1,5 @@
+Host: sql9.freesqldatabase.com
+Database name: sql9597159
+Database user: sql9597159
+Database password: 8HP6PZje3a
+Port number: 3306
