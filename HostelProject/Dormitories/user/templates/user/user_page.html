@@ -1,0 +1,139 @@
+{% extends 'hostels/layout.html' %}
+{% block title %} {{ username }} page {% endblock %}
+{% block content %}
+<section style="background-color: #eee;">
+    <div class="card bg-light">
+        <div class="card-header text-center">
+            <h3>User Page</h3>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                        class="rounded-circle img-fluid" style="width: 150px;">
+                        <h5 class="my-3">{{ username }}</h5>
+                        <button id="adjustUser" type="button" class="btn btn-primary btn-sm">Adjust user</button>
+                        
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Full Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{ firstname }} {{ lastname }}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{ email }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Modal -->
+<div class="modal fade show" id="staticBackdropLive" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLiveLabel" style="display: none;" aria-modal="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLiveLabel">Adjust user</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset>
+                        <div class="mb-3">
+                            <label for="firstname" class="form-label">First Name</label>
+                            <input name="firstname" id="firstname" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="lastname" class="form-label">Last Name</label>
+                            <input name="lastname" id="lastname" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <input name="location" id="location" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="faculty" class="form-label">Faculty</label>
+                            <select name="faculty" id="faculty" class="form-select">
+                                <option>FKPI</option>
+                                <option>FMPK</option>
+                                <option>FTMPL</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select name="gender" id="gender" class="form-select">
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>
+                        <button type="submit" class="btn btn-primary" class="save">Save</button>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modeal Script -->
+<script>
+// Get the modal
+var modal = document.getElementById("staticBackdropLive");
+
+// Get the button that opens the modal
+var btn = document.getElementById("adjustUser");
+
+// Get the button that opens the modal
+var close = document.getElementById("close");
+
+// Get the button that opens the modal
+var save = document.getElementById("save");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("btn-close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks on close button, close the modal
+close.onclick = function(){
+    modal.style.display = "none";
+}
+
+// When the user clicks on save button, close the modal
+save.onclick = function(){
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+{% endblock %}
